@@ -1,0 +1,36 @@
+﻿@model LearningManagementSystem.Models.User
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="card shadow">
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-12">
+                <h4 class="card-title float-start">@ViewData["Title"]</h4>
+                <a class="btn btn-dark float-end" asp-action="Index">
+                    <i class="fa-solid fa-angle-left"></i> Back to List
+                </a>
+            </div>
+        </div>
+        <hr />
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <partial name="Form" />
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary float-end">
+                    <i class="fa-solid fa-save"></i> Save changes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

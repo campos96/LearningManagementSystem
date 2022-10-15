@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using LearningManagementSystem.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<LMSContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LMSContext") ?? throw new InvalidOperationException("Connection string 'LMSContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

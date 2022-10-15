@@ -1,0 +1,24 @@
+﻿@model LearningManagementSystem.Models.User
+
+@{
+    ViewData["Title"] = "User Details";
+}
+
+<div class="card shadow">
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-12">
+                <h4 class="card-title float-start">@ViewData["Title"]</h4>
+                <a class="btn btn-dark float-end" asp-action="Index">
+                    <i class="fa-solid fa-angle-left"></i> Back to List
+                </a>
+            </div>
+        </div>
+        <hr />
+        <fieldset disabled>
+            <partial name="Form" />
+        </fieldset>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning float-end"><i class="fa-solid fa-pencil"></i> Edit</a>
+    </div>
+</div>

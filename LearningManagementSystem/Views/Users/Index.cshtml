@@ -1,0 +1,58 @@
+﻿@model IEnumerable<LearningManagementSystem.Models.User>
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="card shadow">
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-12">
+                <h4 class="card-title float-start">@ViewData["Title"]</h4>
+                <a class="btn btn-primary float-end" asp-action="Create">
+                    <i class="fa-solid fa-plus"></i> Create New
+                </a>
+            </div>
+        </div>
+        <hr />
+        <table class="table table-hover pt-1">
+            <thead class="table-light">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Fullname)</th>
+                    <th>@Html.DisplayNameFor(model => model.Username)</th>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
+                    <th>@Html.DisplayNameFor(model => model.UpdatedAt)</th>
+                    <th>@Html.DisplayNameFor(model => model.DisabledAt)</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Fullname)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CreatedAt)</td>
+                        <td>@Html.DisplayFor(modelItem => item.UpdatedAt)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DisabledAt)</td>
+                        <td>
+                            <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pencil"></i> Edit</a>
+                            <a class="btn btn-sm btn-secondary" asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-circle-info"></i> Details</a>
+                            <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash-can"></i> Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $('table').dataTable();
+    </script>
+}
