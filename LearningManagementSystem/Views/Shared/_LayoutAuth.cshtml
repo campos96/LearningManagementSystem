@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="bg-danger">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col vh-100 bg-light bg-gradient position-relative d-flex" id="particles-js">
+                <div class="position-absolute start-50 top-50 translate-middle">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/font-awesome/js/all.js"></script>
+    <script src="~/lib/particles.js/particles.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        particlesJS.load('particles-js', '@Url.Content("~/assets/particles.json")');
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+

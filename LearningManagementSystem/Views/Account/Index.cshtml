@@ -1,0 +1,70 @@
+﻿@model LearningManagementSystem.Models.User
+
+@{
+    ViewData["Title"] = "Account";
+}
+
+<div class="card shadow">
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-12">
+                <h4 class="card-title float-start">@ViewData["Title"]</h4>
+            </div>
+        </div>
+        <hr />
+        <fieldset disabled>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="Username" class="form-control" />
+                        <label asp-for="Username" class="control-label"></label>
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="Email" class="form-control" />
+                        <label asp-for="Email" class="control-label"></label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="Name" class="form-control" />
+                        <label asp-for="Name" class="control-label"></label>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="Lastname" class="form-control" />
+                        <label asp-for="Lastname" class="control-label"></label>
+                        <span asp-validation-for="Lastname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="CreatedAt" class="form-control" disabled />
+                        <label asp-for="CreatedAt" class="control-label"></label>
+                        <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="UpdatedAt" class="form-control" disabled />
+                        <label asp-for="UpdatedAt" class="control-label"></label>
+                        <span asp-validation-for="UpdatedAt" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="DisabledAt" class="form-control" disabled />
+                        <label asp-for="DisabledAt" class="control-label"></label>
+                        <span asp-validation-for="DisabledAt" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

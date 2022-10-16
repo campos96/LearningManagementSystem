@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using LearningManagementSystem.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<LMSContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LMSContext") ?? throw new InvalidOperationException("Connection string 'LMSContext' not found.")));
@@ -8,6 +10,13 @@ builder.Services.AddDbContext<LMSContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+	.AddCookie(options =>
+	{
+		options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+		options.SlidingExpiration = true;
+		options.AccessDeniedPath = "/Forbidden/";
+	});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,6 +32,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

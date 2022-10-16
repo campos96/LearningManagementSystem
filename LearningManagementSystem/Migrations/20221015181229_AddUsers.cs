@@ -10,7 +10,7 @@ namespace LearningManagementSystem.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -30,13 +30,13 @@ namespace LearningManagementSystem.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "UX_Email",
-                table: "User",
+                table: "Users",
                 column: "Email",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "UX_Username",
-                table: "User",
+                table: "Users",
                 column: "Username",
                 unique: true);
         }
@@ -44,7 +44,7 @@ namespace LearningManagementSystem.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
         }
     }
 }

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LearningManagementSystem.Data;
 using LearningManagementSystem.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LearningManagementSystem.Controllers
 {
+	[Authorize]
 	public class UsersController : Controller
 	{
 		private readonly LMSContext _context;
@@ -22,7 +24,7 @@ namespace LearningManagementSystem.Controllers
 		// GET: Users
 		public async Task<IActionResult> Index()
 		{
-			var users = await _context.User
+			var users = await _context.Users
 				.Where(u => u.DeletedAt == null)
 				.ToListAsync();
 			return View(users);
@@ -31,12 +33,12 @@ namespace LearningManagementSystem.Controllers
 		// GET: Users/Details/5
 		public async Task<IActionResult> Details(Guid? id)
 		{
-			if (id == null || _context.User == null)
+			if (id == null || _context.Users == null)
 			{
 				return NotFound();
 			}
 
-			var user = await _context.User
+			var user = await _context.Users
 				.Where(u => u.DeletedAt == null)
 				.FirstOrDefaultAsync(m => m.Id == id);
 
@@ -74,12 +76,12 @@ namespace LearningManagementSystem.Controllers
 		// GET: Users/Edit/5
 		public async Task<IActionResult> Edit(Guid? id)
 		{
-			if (id == null || _context.User == null)
+			if (id == null || _context.Users == null)
 			{
 				return NotFound();
 			}
 
-			var user = await _context.User
+			var user = await _context.Users
 				.Where(u => u.DeletedAt == null)
 				.FirstOrDefaultAsync(m => m.Id == id);
 
@@ -125,12 +127,12 @@ namespace LearningManagementSystem.Controllers
 		// GET: Users/Delete/5
 		public async Task<IActionResult> Delete(Guid? id)
 		{
-			if (id == null || _context.User == null)
+			if (id == null || _context.Users == null)
 			{
 				return NotFound();
 			}
 
-			var user = await _context.User
+			var user = await _context.Users
 				.Where(u => u.DeletedAt == null)
 				.FirstOrDefaultAsync(m => m.Id == id);
 
@@ -147,12 +149,12 @@ namespace LearningManagementSystem.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> DeleteConfirmed(Guid id)
 		{
-			if (_context.User == null)
+			if (_context.Users == null)
 			{
 				return Problem("Entity set 'LMSContext.User'  is null.");
 			}
 
-			var user = await _context.User
+			var user = await _context.Users
 				.Where(u => u.DeletedAt == null)
 				.FirstOrDefaultAsync(m => m.Id == id);
 
@@ -167,7 +169,7 @@ namespace LearningManagementSystem.Controllers
 
 		private bool UserExists(Guid id)
 		{
-			return _context.User.Any(e => e.Id == id);
+			return _context.Users.Any(e => e.Id == id);
 		}
 	}
 }
