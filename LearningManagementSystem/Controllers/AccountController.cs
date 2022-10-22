@@ -114,7 +114,7 @@ namespace LearningManagementSystem.Controllers
 					Email = registerViewModel.Email,
 					Name = registerViewModel.Name,
 					Lastname = registerViewModel.Lastname,
-					CreatedAt = registerViewModel.CreatedAt,
+					CreatedAt = DateTime.Now,
 				};
 
 				_context.Users.Add(user);

@@ -1,4 +1,4 @@
-﻿@model LearningManagementSystem.Models.User
+﻿@model LearningManagementSystem.Models.RegisterViewModel
 
 @{
     ViewData["Title"] = "Create User";
@@ -18,11 +18,56 @@
         <hr />
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <partial name="Form" />
-            <div class="form-group">
-                <button type="submit" class="btn btn-success float-end">
-                    <i class="fa-solid fa-plus"></i> Create
-                </button>
+            <div class="row">
+                <div class="col-xxl-6 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="Username" class="form-control" />
+                        <label asp-for="Username" class="control-label"></label>
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-xxl-6 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="Email" class="form-control" />
+                        <label asp-for="Email" class="control-label"></label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-xxl-6 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="Name" class="form-control" />
+                        <label asp-for="Name" class="control-label"></label>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-xxl-6 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="Lastname" class="form-control" />
+                        <label asp-for="Lastname" class="control-label"></label>
+                        <span asp-validation-for="Lastname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-xxl-6 mb-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="Password" class="form-control" type="password" />
+                        <label asp-for="Password" class="control-label"></label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-xxl-6 mb-3">
+                    <div class="form-floating mb-3">
+                        <input asp-for="PasswordConfirmation" class="form-control" type="password" />
+                        <label asp-for="PasswordConfirmation" class="control-label"></label>
+                        <span asp-validation-for="PasswordConfirmation" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12 mb-3">
+                    <button type="submit" class="btn btn-success float-end">
+                        <i class="fa-solid fa-plus"></i> Create
+                    </button>
+                </div>
             </div>
         </form>
     </div>

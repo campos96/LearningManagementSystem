@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using LearningManagementSystem.Data;
 using LearningManagementSystem.Models;
 using Microsoft.AspNetCore.Authorization;
+using NuGet.Protocol.Plugins;
 
 namespace LearningManagementSystem.Controllers
 {
@@ -53,23 +54,54 @@ namespace LearningManagementSystem.Controllers
 		// GET: Users/Create
 		public IActionResult Create()
 		{
-			return View(new User { CreatedAt = DateTime.Now });
+			return View();
 		}
 
 		// POST: Users/Create
 		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create(User user)
+		[AllowAnonymous]
+		public async Task<IActionResult> Create(RegisterViewModel registerViewModel)
 		{
 			if (!ModelState.IsValid)
 			{
-				return View(user);
+				return View(registerViewModel);
 			}
 
-			user.Id = Guid.NewGuid();
-			user.CreatedAt = DateTime.Now;
-			_context.Add(user);
-			await _context.SaveChangesAsync();
+			var _user = await _context.Users
+				.FirstOrDefaultAsync(u => u.Username == registerViewModel.Username);
+
+			if (_user != null)
+			{
+				ModelState.AddModelError(nameof(registerViewModel.Username), "Username already taken.");
+				return View(registerViewModel);
+			}
+			using (var transaction = await _context.Database.BeginTransactionAsync())
+			{
+				var user = new User
+				{
+					Id = Guid.NewGuid(),
+					Username = registerViewModel.Username,
+					Email = registerViewModel.Email,
+					Name = registerViewModel.Name,
+					Lastname = registerViewModel.Lastname,
+					CreatedAt = DateTime.Now,
+				};
+
+				_context.Users.Add(user);
+				await _context.SaveChangesAsync();
+
+				var userIdentity = new UserIdentity
+				{
+					UserId = user.Id,
+					Password = registerViewModel.Password,
+					PasswordResetDate = DateTime.Now
+				};
+
+				_context.UserIdentities.Add(userIdentity);
+				await _context.SaveChangesAsync();
+				transaction.Commit();
+			}
+
 			return RedirectToAction(nameof(Index));
 		}
 
