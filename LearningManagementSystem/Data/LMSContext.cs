@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using LearningManagementSystem.Models;
 
 namespace LearningManagementSystem.Data
@@ -17,6 +13,14 @@ namespace LearningManagementSystem.Data
 		public DbSet<User> Users { get; set; } = default!;
 
 		public DbSet<UserIdentity> UserIdentities { get; set; } = default!;
+
+		public DbSet<Company> Companies { get; set; } = default!;
+
+		public DbSet<Location> Locations { get; set; } = default!;
+
+		public DbSet<Facility> Facilities { get; set; } = default!;
+
+		public DbSet<Department> Departments { get; set; } = default!;
 
 	}
 }

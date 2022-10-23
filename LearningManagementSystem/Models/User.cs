@@ -22,6 +22,8 @@ namespace LearningManagementSystem.Models
 		[Required]
 		public string Lastname { get; set; }
 
+		public Guid? DepartmentId { get; set; }
+
 		[Required]
 		public DateTime CreatedAt { get; set; }
 
@@ -32,6 +34,8 @@ namespace LearningManagementSystem.Models
 		public DateTime? DeletedAt { get; set; }
 
 		public string Fullname => $"{Name} {Lastname}";
+
+		public virtual Department? Department { get; set; }
 
 	}
 }
